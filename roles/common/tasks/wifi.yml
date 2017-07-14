@@ -2,7 +2,7 @@
 - name: copy wifi files
   copy:
     src: "{{ item }}"
-    dest: /lib/firmware/brcm/brcmfmac4356-pcie.bin
+    dest: /lib/firmware/brcm/
     owner: root
     group: root
     mode: 0644
