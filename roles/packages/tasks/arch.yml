@@ -7,7 +7,6 @@
   - bc
   - cpanminus
   - git
-  - gstreamer
   - gstreamer-vaapi
   - gst-libav
   - i2c-tools

@@ -34,7 +34,6 @@
   - dev-libs/openssl
   - dev-perl/App-cpanminus
   - dev-vcs/git
-  - media-libs/gstreamer
   - media-libs/mesa
   - media-plugins/gst-plugins-meta
   - media-sound/pulseaudio
