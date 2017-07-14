@@ -1,0 +1,51 @@
+---
+- name: create xorg directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - /etc/X11/xorg.conf.d
+  - /etc/X11/Xsession.d
+  tags:
+  - xorg
+
+- name: copy xorg configs
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  register: xorg_configs
+  with_items:
+  - { src: 'files/xorg/01touchscreen', dest: '/etc/X11/Xsession.d/' }
+  - { src: 'files/xorg/02scale', dest: '/etc/X11/Xsession.d/' }
+  - { src: 'files/xorg/03scrolling', dest: '/etc/X11/Xsession.d/' }
+  - { src: 'files/xorg/04gpdrotate', dest: '/etc/X11/Xsession.d/' }
+  - { src: 'files/xorg/20-intel.conf', dest: '/etc/X11/xorg.conf.d/' }
+  - { src: 'files/xorg/89-screen.conf', dest: '/etc/X11/xorg.conf.d/' }
+  - { src: 'files/xorg/90-monitor.conf', dest: '/etc/X11/xorg.conf.d/' }
+  tags:
+  - xorg
+
+- name: copy gpdrotate script
+  copy:
+    src: files/xorg/gpdrotate.sh
+    dest: /usr/local/sbin/gpdrotate
+    owner: root
+    group: root
+    mode: 0777
+  tags:
+  - xorg
+
+- name: copy systemd service for gpdrotate
+  copy:
+    src: files/xorg/gpdrotate.service
+    dest: /etc/systemd/system/gpdrotate.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+  - enable gpdrotate
+  tags:
+  - xorg

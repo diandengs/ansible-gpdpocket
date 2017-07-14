@@ -1,0 +1,38 @@
+---
+- name: install essential packages
+  pacman: name="{{ item }}"
+  with_items:
+  - base-devel
+  - btrfs-progs
+  - bc
+  - cpanminus
+  - git
+  - gstreamer
+  - gstreamer-vaapi
+  - gst-libav
+  - i2c-tools
+  - inetutils
+  - intel-ucode
+  - kmod
+  - libelf
+  - mesa
+  - perl
+  - pulseaudio
+  - thermald
+  - tlp
+  - xf86-video-intel
+  - xorg-xrandr
+  notify:
+  - enable thermal services
+  tags:
+  - packages
+
+- name: install perl dependencies
+  cpanm: name="{{ item }}"
+  with_items:
+  - 'Date::Format'
+  - 'Proc::Daemon'
+  - 'Proc::PID::File'
+  - 'Log::Dispatch'
+  tags:
+  - packages

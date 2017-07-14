@@ -1,0 +1,30 @@
+---
+- name: install essential packages
+  apt: name="{{ item }}"
+  with_items:
+  - build-essential
+  - git
+  - gstreamer
+  - gstreamer1.0-libav
+  - gstreamer1.0-vaapi
+  - i965-va-driver
+  - intel-microcode
+  - libelf-dev
+  - libncurses5-dev
+  - libproc-daemon-perl
+  - libproc-pid-file-perl
+  - liblog-dispatch-perl
+  - libssl-dev
+  - lm-sensors
+  - mesa-utils
+  - perl
+  - pulseaudio
+  - thermald
+  - tlp
+  - va-driver-all
+  - vainfo
+  - x11-xserver-utils
+  notify:
+  - enable thermal services
+  tags:
+  - packages

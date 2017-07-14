@@ -1,7 +1,0 @@
----
-- name: enable gpdrotate
-  systemd:
-    name: gpdrotate
-    daemon_reload: yes
-    enabled: yes
-  listen: enable gpdrotate

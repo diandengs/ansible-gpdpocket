@@ -26,19 +26,19 @@ done
 # install essential packages
 echo "installing essential packages..."
 if [ -f /usr/bin/pacman ]; then
-  pacman -Sy --noconfirm ansible unzip wget
+  pacman -Sy --noconfirm ansible git
 elif [ -f /usr/bin/apt-get ]; then
-  # wait for apt availability
-  echo "waiting for apt to be available..."
   while fuser /var/lib/dpkg/lock >/dev/null 2>&1 ; do
     sleep 1
   done
-  
   apt-get update
   apt-get -y install software-properties-common python-software-properties
   add-apt-repository -y ppa:ansible/ansible
   apt-get update
   apt-get -y install ansible git
+elif [ -f /usr/bin/emerge ]; then
+  emerge --sync
+  USE="blksha1 curl webdav" emerge app-admin/ansible dev-vcs/git
 fi
 
 # update ansible code

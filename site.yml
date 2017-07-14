@@ -1,16 +1,8 @@
 ---
 - hosts: localhost
   connection: local
-  
+
   roles:
-  - audio
-  - cleanup
-  - cpu
-  - display
-  - fan
-  - grub
-  - kernel
-  - mouse
-  - update
-  - video
-  - wifi
+  - boot
+  - common
+  - packages
