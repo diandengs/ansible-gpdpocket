@@ -22,6 +22,7 @@ args = parser.parse_args()
 # Exit function
 def exit(*args):
     set_fans(0,0)
+    set_turbo(1)
     sys.exit(0)
 
 # Get temperature function
@@ -41,6 +42,11 @@ def set_fans(a,b):
     with io.open('/sys/class/gpio/gpio398/value', 'w') as gpio:
         gpio.write(unicode(b))
 
+# Set no turbo boost function
+def set_no_turbo(value):
+    with io.open('/sys/devices/system/cpu/intel_pstate/no_turbo', 'w') as no_turbo:
+        no_turbo.write(unicode(value))
+
 # Initialization function
 def init():
     for id in [397,398]:
@@ -59,16 +65,20 @@ while True:
     temp = get_temp()
 
     if temp >= args.max:
-        print "Temperature: " + str(temp) + ", Fan Speed: Max"
+        print "Temperature: " + str(temp) + ", Fan Speed: Max, Turbo: Off"
         set_fans(1,1)
+        set_no_turbo(1)
     elif temp >= args.med:
-        print "Temperature: " + str(temp) + ", Fan Speed: Med"
+        print "Temperature: " + str(temp) + ", Fan Speed: Med, Turbo: On"
         set_fans(0,1)
+        set_no_turbo(0)
     elif temp >= args.min:
-        print "Temperature: " + str(temp) + ", Fan Speed: Min"
+        print "Temperature: " + str(temp) + ", Fan Speed: Min, Turbo: On"
         set_fans(1,0)
+        set_no_turbo(0)
     else:
-        print "Temperature: " + str(temp) + ", Fan Speed: Off"
+        print "Temperature: " + str(temp) + ", Fan Speed: Off, Turbo: On"
         set_fans(0,0)
+        set_no_turbo(0)
 
     sleep(args.time)
