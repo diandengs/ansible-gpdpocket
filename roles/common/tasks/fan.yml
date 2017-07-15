@@ -7,6 +7,7 @@
     group: root
     mode: 0777
   tags:
+  - common
   - fan
 
 - name: add suspend script for gpdfand
@@ -17,6 +18,7 @@
     group: root
     mode: 0777
   tags:
+  - common
   - fan
 
 - name: copy config file for gpdfand
@@ -28,6 +30,7 @@
     mode: 0644
     force: no
   tags:
+  - common
   - fan
 
 - name: copy systemd service for gpdfand
@@ -40,4 +43,5 @@
   notify:
   - enable gpdfand
   tags:
+  - common
   - fan

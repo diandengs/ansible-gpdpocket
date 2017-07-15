@@ -5,6 +5,7 @@
     state: directory
   tags:
   - audio
+  - common
 
 - name: copy audio config files to device
   copy:
@@ -20,6 +21,7 @@
   - files/audio/HiFi.conf
   tags:
   - audio
+  - common
 
 - name: add additional pulseaudio config
   lineinfile:
@@ -31,6 +33,7 @@
   - 'set-default-source 1'
   tags:
   - audio
+  - common
 
 - name: disable realtime scheduling
   lineinfile:
@@ -39,3 +42,4 @@
     state: absent
   tags:
   - audio
+  - common

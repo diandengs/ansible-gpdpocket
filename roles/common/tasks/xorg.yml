@@ -7,6 +7,7 @@
   - /etc/X11/xorg.conf.d
   - /etc/X11/Xsession.d
   tags:
+  - common
   - xorg
 
 - name: copy xorg configs
@@ -26,6 +27,7 @@
   - { src: 'files/xorg/89-screen.conf', dest: '/etc/X11/xorg.conf.d/' }
   - { src: 'files/xorg/90-monitor.conf', dest: '/etc/X11/xorg.conf.d/' }
   tags:
+  - common
   - xorg
 
 - name: copy gpdrotate script
@@ -36,6 +38,7 @@
     group: root
     mode: 0777
   tags:
+  - common
   - xorg
 
 - name: copy systemd service for gpdrotate
@@ -48,4 +51,5 @@
   notify:
   - enable gpdrotate
   tags:
+  - common
   - xorg

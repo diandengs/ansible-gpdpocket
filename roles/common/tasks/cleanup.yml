@@ -10,14 +10,6 @@
   - cleanup
   - common
 
-- name: remove old gpdfand log location
-  file:
-    path: /var/log/gpdfand
-    state: absent
-  tags:
-  - cleanup
-  - common
-
 - name: remove old xorg configs
   file:
     path: "{{ item }}"
@@ -93,10 +85,10 @@
   - cleanup
   - common
   
-  - name: delete log path for gpdfand
-    file:
-      path: /var/log/gpdfand
-      state: absent
-    tags:
-    - cleanup
-    - common
+- name: delete log path for gpdfand
+  file:
+    path: /var/log/gpdfand
+    state: absent
+  tags:
+  - cleanup
+  - common
