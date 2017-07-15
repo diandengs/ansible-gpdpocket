@@ -1,5 +1,5 @@
 #!/usr/bin/env python2.7
-# coding=utf-8
+# -*- coding: utf-8 -*-
 
 # Full credit goes to efluffy at https://github.com/efluffy/gpdfand
 # This script is simply re-written in python to avoid perl dependencies

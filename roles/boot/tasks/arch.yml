@@ -9,7 +9,7 @@
   - update initrd
   - update grub
   tags:
-  - system
+  - boot
 
 - name: fetch latest prebuilt kernel (this will take a while)
   git:
@@ -18,15 +18,15 @@
     force: yes
   register: kernel_sources
   tags:
-  - system
+  - boot
 
-- name: install kernel modules
+- name: install kernel modules- 
   make:
     chdir: /usr/src/linux-gpdpocket
     target: modules_install
   when: kernel_sources.changed
   tags:
-  - system
+  - boot
 
 - name: install new kernel
   copy:
@@ -40,7 +40,7 @@
   - update grub
   when: kernel_sources.changed
   tags:
-  - system
+  - boot
 
 - name: add modules to initramfs
   lineinfile:
@@ -52,7 +52,7 @@
   - update initrd
   - update grub
   tags:
-  - system
+  - boot
 
 - name: add boot options to grub
   lineinfile:
@@ -62,7 +62,7 @@
   notify:
   - update grub
   tags:
-  - system
+  - boot
 
 - name: reduce grub timeout
   lineinfile:
@@ -72,4 +72,4 @@
   notify:
   - update grub
   tags:
-  - system
+  - boot
