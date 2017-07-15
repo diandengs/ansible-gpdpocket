@@ -27,7 +27,7 @@ def exit():
 # Get temperature function
 def get_temp():
     temps = []
-    for hwmon in ('/sys/class/hwmon/hwmon*'):
+    for hwmon in glob('/sys/class/hwmon/hwmon*'):
         if open(hwmon + '/name').read() == 'coretemp':
             for temp_input in glob(hwmon + '/temp*_input'):
                 temp = int(open(temp_input).read()) / 1000.0
