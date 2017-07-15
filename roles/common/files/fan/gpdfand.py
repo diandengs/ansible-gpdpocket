@@ -18,9 +18,6 @@ parser.add_argument('--med', type=int, help='Temperature required for medium fan
 parser.add_argument('--max', type=int, help='Temperature required for maximum fan speed', default=65)
 args = parser.parse_args()
 
-# Setup exit handler
-atexit.register(exit)
-
 # Exit function
 def exit():
     set_fans(0,0)
@@ -51,6 +48,9 @@ def init():
 
 # Perform initialization
 init()
+
+# Setup exit handler
+atexit.register(exit)
 
 # Rinse, repeat.
 while True:
