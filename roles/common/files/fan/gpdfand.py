@@ -56,12 +56,16 @@ while True:
     temp = get_temp()
 
     if temp >= args.max:
+        print "Temperature: " + str(temp) + ", Fan Speed: Max"
         set_fans(1,1)
     elif temp >= args.med:
+        print "Temperature: " + str(temp) + ", Fan Speed: Med"
         set_fans(0,1)
     elif temp >= args.min:
+        print "Temperature: " + str(temp) + ", Fan Speed: Min"
         set_fans(1,0)
     else:
+        print "Temperature: " + str(temp) + ", Fan Speed: Off"
         set_fans(0,0)
 
     sleep(10)
