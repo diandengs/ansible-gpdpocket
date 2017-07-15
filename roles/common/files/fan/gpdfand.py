@@ -43,7 +43,7 @@ def set_fans(a,b):
 # Initialization function
 def init():
     for id in [368,369]:
-        if not os.path.isfile('/sys/class/gpio/gpio' + id + '/value'):
+        if not os.path.isfile('/sys/class/gpio/gpio' + str(id) + '/value'):
             with io.open('/sys/class/gpio/export', 'w') as gpio_export:
                 gpio_export.write(id)
 
