@@ -7,7 +7,8 @@ from glob import glob
 from time import sleep
 import argparse
 import atexit
-import os
+import io
+import os.path
 
 # Parse command line arguments
 parser = argparse.ArgumentParser()
