@@ -6,8 +6,7 @@
     line: HOOKS="base udev block autodetect modconf filesystems fsck"
     create: yes
   notify:
-  - update initrd
-  - update grub
+  - update boot
   tags:
   - boot
 
@@ -20,10 +19,12 @@
   tags:
   - boot
 
-- name: install kernel modules- 
+- name: install kernel modules
   make:
     chdir: /usr/src/linux-gpdpocket
     target: modules_install
+  notify:
+  - update boot
   when: kernel_sources.changed
   tags:
   - boot
@@ -36,8 +37,7 @@
     group: root
     mode: 0644
   notify:
-  - update initrd
-  - update grub
+  - update boot
   when: kernel_sources.changed
   tags:
   - boot
@@ -49,8 +49,7 @@
     line: MODULES="btusb pwm-lpss pwm-lpss-platform"
     create: yes
   notify:
-  - update initrd
-  - update grub
+  - update boot
   tags:
   - boot
 
@@ -60,7 +59,7 @@
     regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
     line: 'GRUB_CMDLINE_LINUX_DEFAULT="i915.fastboot=1 i915.semaphores=1"'
   notify:
-  - update grub
+  - update boot
   tags:
   - boot
 
@@ -70,6 +69,6 @@
     regexp: '^GRUB_TIMEOUT='
     line: 'GRUB_TIMEOUT=3'
   notify:
-  - update grub
+  - update boot
   tags:
   - boot
