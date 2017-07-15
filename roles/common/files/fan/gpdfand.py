@@ -6,9 +6,10 @@
 from glob import glob
 from time import sleep
 import argparse
-import atexit
 import io
 import os.path
+import signal
+import sys
 
 # Parse command line arguments
 parser = argparse.ArgumentParser()
@@ -19,8 +20,9 @@ parser.add_argument('--max', type=int, help='Temperature required for maximum fa
 args = parser.parse_args()
 
 # Exit function
-def exit():
+def exit(*args):
     set_fans(0,0)
+    sys.exit(0)
 
 # Get temperature function
 def get_temp():
@@ -50,7 +52,7 @@ def init():
 init()
 
 # Setup exit handler
-atexit.register(exit)
+signal.signal(signal.SIGTERM, exit)
 
 # Rinse, repeat.
 while True:
