@@ -1,4 +1,5 @@
 #!/usr/bin/env python2.7
+# coding=utf-8
 
 # Full credit goes to efluffy at https://github.com/efluffy/gpdfand
 # This script is simply re-written in python to avoid perl dependencies
@@ -43,9 +44,9 @@ def set_fans(a,b):
         gpio.write(unicode(b))
 
 # Set no turbo boost function
-def set_no_turbo(value):
+def set_no_turbo(state):
     with io.open('/sys/devices/system/cpu/intel_pstate/no_turbo', 'w') as no_turbo:
-        no_turbo.write(unicode(value))
+        no_turbo.write(unicode(state))
 
 # Initialization function
 def init():
