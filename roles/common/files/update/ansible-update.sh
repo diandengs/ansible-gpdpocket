@@ -26,7 +26,7 @@ else
 fi
 
 # ensure /boot is mounted
-mount /boot || true
+mount /boot 2>&1 /dev/null || true
 
 # run ansible scripts
 echo "starting ansible playbook..."
