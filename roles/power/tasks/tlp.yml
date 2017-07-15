@@ -1,5 +1,5 @@
 ---
-- name: reduce grub timeout
+- name: set tlp disk devices
   lineinfile:
     path: /etc/default/grub
     regexp: '^DISK_DEVICES='
