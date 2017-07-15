@@ -12,6 +12,7 @@ import os.path
 
 # Parse command line arguments
 parser = argparse.ArgumentParser()
+parser.add_argument('--time', type=int, help='Time between temperature checks', default=10)
 parser.add_argument('--min', type=int, help='Temperature required for minimum fan speed', default=45)
 parser.add_argument('--med', type=int, help='Temperature required for medium fan speed', default=55)
 parser.add_argument('--max', type=int, help='Temperature required for maximum fan speed', default=65)
@@ -68,4 +69,4 @@ while True:
         print "Temperature: " + str(temp) + ", Fan Speed: Off"
         set_fans(0,0)
 
-    sleep(10)
+    sleep(args.time)
