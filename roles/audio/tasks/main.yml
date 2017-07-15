@@ -17,8 +17,8 @@
   notify:
   - set default audio
   with_items:
-  - files/audio/chtrt5645.conf
-  - files/audio/HiFi.conf
+  - files/chtrt5645.conf
+  - files/HiFi.conf
   tags:
   - audio
   - common
