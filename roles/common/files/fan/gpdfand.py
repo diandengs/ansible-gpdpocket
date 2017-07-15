@@ -3,12 +3,11 @@
 # Full credit goes to efluffy at https://github.com/efluffy/gpdfand
 # This script is simply re-written in python to avoid perl dependencies
 
-from __future__ import division
 from glob import glob
 from time import sleep
 import argparse
 import atexit
-import os.path
+import os
 
 # Parse command line arguments
 parser = argparse.ArgumentParser()
@@ -30,23 +29,23 @@ def get_temp():
     for hwmon in ('/sys/class/hwmon/hwmon*'):
         if open(hwmon + '/name').read() == 'coretemp':
             for temp_input in glob(hwmon + '/temp*_input'):
-                temp = int(open(temp_input).read()) / 1000
+                temp = int(open(temp_input).read()) / 1000.0
                 temps.append(temp)
     return sum(temps) / len(temps)
 
 # Set fans function
 def set_fans(a,b):
-    with open('/sys/class/gpio/gpio368/value', 'a') as gpio_dev:
-        gpio_dev.write(a)
-    with open('/sys/class/gpio/gpio369/value', 'a') as gpio_dev:
-        gpio_dev.write(b)
+    with io.open('/sys/class/gpio/gpio368/value', 'w') as gpio:
+        gpio.write(a)
+    with io.open('/sys/class/gpio/gpio369/value', 'w') as gpio:
+        gpio.write(b)
 
 # Initialization function
 def init():
     for id in [368,369]:
-        if not os.path.isfile("/sys/class/gpio/gpio' + id + '/value"):
-            with open('/sys/class/gpio/export', 'a') as gpio_dev:
-                gpio_dev.write('368')
+        if not os.path.isfile('/sys/class/gpio/gpio' + id + '/value'):
+            with io.open('/sys/class/gpio/export', 'w') as gpio_export:
+                gpio_export.write(id)
 
 # Perform initialization
 init()
