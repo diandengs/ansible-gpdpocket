@@ -29,8 +29,9 @@ def get_temp():
     temps = []
     for hwmon in glob('/sys/devices/platform/coretemp.0/hwmon/hwmon*'):
         for temp_input in glob(hwmon + '/temp*_input'):
-            temp = int(open(temp_input).read()) / 1000
-            temps.append(temp)
+            with io.open('/sys/class/gpio/export', 'w') as temp_input:
+                temp = temp_input.read() / 1000
+                temps.append(temp)
     return sum(temps) / float(len(temps))
 
 # Set fans function
@@ -54,11 +55,11 @@ init()
 while True:
     temp = get_temp()
 
-    if temp >= args['max']:
+    if temp >= args.max:
         set_fans(1,1)
-    elif temp >= args['med']:
+    elif temp >= args.med:
         set_fans(0,1)
-    elif temp >= args['min']:
+    elif temp >= args.min:
         set_fans(1,0)
     else:
         set_fans(0,0)
