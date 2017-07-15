@@ -7,7 +7,6 @@
 from glob import glob
 from time import sleep
 import argparse
-import daemon
 import io
 import os.path
 import signal
