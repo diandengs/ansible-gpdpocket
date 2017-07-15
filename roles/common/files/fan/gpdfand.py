@@ -22,7 +22,7 @@ args = parser.parse_args()
 # Exit function
 def exit(*args):
     set_fans(0,0)
-    set_turbo(1)
+    set_no_turbo(0)
     sys.exit(0)
 
 # Get temperature function
