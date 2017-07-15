@@ -40,7 +40,7 @@
     group: root
     mode: 0644
   notify:
-- update boot
+  - update boot
   when: kernel_sources.changed
   tags:
   - boot
