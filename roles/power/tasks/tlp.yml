@@ -1,0 +1,11 @@
+---
+- name: reduce grub timeout
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^DISK_DEVICES='
+    line: 'DISK_DEVICES="mmcblk0"'
+  notify:
+  - restart tlp
+  tags:
+  - power
+  - tlp
