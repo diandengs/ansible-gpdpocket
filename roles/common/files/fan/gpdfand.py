@@ -30,7 +30,7 @@ def get_temp():
     for hwmon in glob('/sys/devices/platform/coretemp.0/hwmon/hwmon*'):
         for temp_input_dev in glob(hwmon + '/temp*_input'):
             with io.open(temp_input_dev, 'r') as core_temp:
-                temp = core_temp.read() / 1000
+                temp = int(core_temp.read()) / 1000
                 temps.append(temp)
     return sum(temps) / float(len(temps))
 
