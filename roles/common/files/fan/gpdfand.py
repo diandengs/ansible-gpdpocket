@@ -4,7 +4,6 @@
 # This script is simply re-written in python to avoid perl dependencies
 
 from __future__ import division
-from __future__ import print_function
 from glob import glob
 from time import sleep
 import argparse
@@ -35,19 +34,22 @@ def get_temp():
                 temps.append(temp)
     return sum(temps) / len(temps)
 
-# Setup function
-def setup():
-    for id in [368,369]:
-        if not os.path.isfile("/sys/class/gpio/gpio' + id + '/value"):
-            print(id, file='/sys/class/gpio/export')
-
 # Set fans function
 def set_fans(a,b):
-    print(a, file='/sys/class/gpio/gpio368/value')
-    print(b, file='/sys/class/gpio/gpio369/value')
+    with open('/sys/class/gpio/gpio368/value', 'w') as gpio_dev:
+        gpio_dev.write(a)
+    with open('/sys/class/gpio/gpio369/value', 'w') as gpio_dev:
+        gpio_dev.write(b)
 
-# Perform setup
-setup()
+# Initialization function
+def init():
+    for id in [368,369]:
+        if not os.path.isfile("/sys/class/gpio/gpio' + id + '/value"):
+            with open('/sys/class/gpio/export', 'w') as gpio_dev:
+                gpio_dev.write('368')
+
+# Perform initialization
+init()
 
 # Rinse, repeat.
 while True:
