@@ -36,16 +36,16 @@ def get_temp():
 
 # Set fans function
 def set_fans(a,b):
-    with open('/sys/class/gpio/gpio368/value', 'w') as gpio_dev:
+    with open('/sys/class/gpio/gpio368/value', 'a') as gpio_dev:
         gpio_dev.write(a)
-    with open('/sys/class/gpio/gpio369/value', 'w') as gpio_dev:
+    with open('/sys/class/gpio/gpio369/value', 'a') as gpio_dev:
         gpio_dev.write(b)
 
 # Initialization function
 def init():
     for id in [368,369]:
         if not os.path.isfile("/sys/class/gpio/gpio' + id + '/value"):
-            with open('/sys/class/gpio/export', 'w') as gpio_dev:
+            with open('/sys/class/gpio/export', 'a') as gpio_dev:
                 gpio_dev.write('368')
 
 # Perform initialization
