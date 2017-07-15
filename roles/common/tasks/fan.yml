@@ -1,37 +1,38 @@
 ---
 - name: copy gpdfand daemon
   copy:
-    src: files/thermal/gpdfand.pl
+    src: files/fan/gpdfand.py
     dest: /usr/local/sbin/gpdfand
     owner: root
     group: root
     mode: 0777
   tags:
-  - thermal
-
-- name: create log path for gpdfand
-  file:
-    path: /var/log/gpdfand
-    state: directory
-    owner: root
-    group: root
-    mode: 0666
-  tags:
-  - thermal
+  - fan
 
 - name: add suspend script for gpdfand
   copy:
-    src: files/thermal/gpdfand
+    src: files/fan/gpdfand
     dest: /lib/systemd/system-sleep/gpdfand
     owner: root
     group: root
     mode: 0777
   tags:
-  - thermal
+  - fan
+
+- name: copy config file for gpdfand
+  copy:
+    src: files/fan/gpdfand.conf
+    dest: /etc/gpdfand.conf
+    owner: root
+    group: root
+    mode: 0644
+    force: no
+  tags:
+  - fan
 
 - name: copy systemd service for gpdfand
   copy:
-    src: files/thermal/gpdfand.service
+    src: files/fan/gpdfand.service
     dest: /etc/systemd/system/gpdfand.service
     owner: root
     group: root
@@ -39,4 +40,4 @@
   notify:
   - enable gpdfand
   tags:
-  - thermal
+  - fan

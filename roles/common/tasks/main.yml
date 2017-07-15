@@ -1,7 +1,7 @@
 ---
 - include: audio.yml
 - include: cleanup.yml
-- include: thermal.yml
+- include: fan.yml
 - include: update.yml
 - include: wifi.yml
 - include: xorg.yml

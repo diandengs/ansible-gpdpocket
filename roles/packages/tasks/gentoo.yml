@@ -29,10 +29,8 @@
   portage: package="{{ item }}"
   with_items:
   - app-portage/layman
-  - dev-lang/perl
   - dev-libs/libelf
   - dev-libs/openssl
-  - dev-perl/App-cpanminus
   - dev-vcs/git
   - media-libs/mesa
   - media-plugins/gst-plugins-meta
@@ -66,15 +64,5 @@
 
 - name: install tlp
   portage: package=app-laptop/tlp
-  tags:
-  - packages
-  
-- name: install perl dependencies
-  cpanm: name="{{ item }}"
-  with_items:
-  - 'Date::Format'
-  - 'Proc::Daemon'
-  - 'Proc::PID::File'
-  - 'Log::Dispatch'
   tags:
   - packages

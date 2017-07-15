@@ -5,7 +5,6 @@
   - base-devel
   - btrfs-progs
   - bc
-  - cpanminus
   - git
   - gstreamer-vaapi
   - gst-libav
@@ -15,7 +14,6 @@
   - kmod
   - libelf
   - mesa
-  - perl
   - pulseaudio
   - thermald
   - tlp
@@ -23,15 +21,5 @@
   - xorg-xrandr
   notify:
   - enable thermal services
-  tags:
-  - packages
-
-- name: install perl dependencies
-  cpanm: name="{{ item }}"
-  with_items:
-  - 'Date::Format'
-  - 'Proc::Daemon'
-  - 'Proc::PID::File'
-  - 'Log::Dispatch'
   tags:
   - packages
