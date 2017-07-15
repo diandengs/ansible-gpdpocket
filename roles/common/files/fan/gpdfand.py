@@ -30,9 +30,9 @@ def get_temp():
     for hwmon in glob('/sys/class/hwmon/hwmon*'):
         if open(hwmon + '/name').read() == 'coretemp':
             for temp_input in glob(hwmon + '/temp*_input'):
-                temp = int(open(temp_input).read()) / 1000.0
+                temp = int(open(temp_input).read()) / 1000
                 temps.append(temp)
-    return sum(temps) / len(temps)
+    return sum(temps) / float(len(temps))
 
 # Set fans function
 def set_fans(a,b):
