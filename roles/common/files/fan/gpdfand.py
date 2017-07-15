@@ -37,9 +37,9 @@ def get_temp():
 # Set fans function
 def set_fans(a,b):
     with io.open('/sys/class/gpio/gpio397/value', 'w') as gpio:
-        gpio.write(a)
+        gpio.write(unicode(a))
     with io.open('/sys/class/gpio/gpio398/value', 'w') as gpio:
-        gpio.write(b)
+        gpio.write(unicode(b))
 
 # Initialization function
 def init():
