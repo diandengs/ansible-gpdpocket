@@ -1,7 +1,7 @@
 ---
 - name: install update script
   copy:
-    src: files/update/ansible-update.sh
+    src: files/ansible-update.sh
     dest: /usr/local/bin/ansible-update
     owner: root
     group: root

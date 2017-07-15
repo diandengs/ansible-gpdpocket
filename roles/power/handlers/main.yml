@@ -1,0 +1,7 @@
+---
+- name: enable gpdfand
+  systemd:
+    name: gpdfand
+    daemon_reload: yes
+    enabled: yes
+  listen: enable gpdfand

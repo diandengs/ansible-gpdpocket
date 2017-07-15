@@ -1,0 +1,9 @@
+---
+- name: enable thermal services
+  service:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+  - thermald
+  - tlp
+  listen: enable thermal services

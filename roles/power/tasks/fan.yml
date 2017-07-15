@@ -1,41 +1,41 @@
 ---
 - name: copy gpdfand daemon
   copy:
-    src: files/fan/gpdfand.py
+    src: files/gpdfand.py
     dest: /usr/local/sbin/gpdfand
     owner: root
     group: root
     mode: 0777
   tags:
-  - common
   - fan
+  - power
 
 - name: add suspend script for gpdfand
   copy:
-    src: files/fan/gpdfand
+    src: files/gpdfand
     dest: /lib/systemd/system-sleep/gpdfand
     owner: root
     group: root
     mode: 0777
   tags:
-  - common
   - fan
+  - power
 
 - name: copy config file for gpdfand
   copy:
-    src: files/fan/gpdfand.conf
+    src: files/gpdfand.conf
     dest: /etc/gpdfand.conf
     owner: root
     group: root
     mode: 0644
     force: no
   tags:
-  - common
   - fan
+  - power
 
 - name: copy systemd service for gpdfand
   copy:
-    src: files/fan/gpdfand.service
+    src: files/gpdfand.service
     dest: /etc/systemd/system/gpdfand.service
     owner: root
     group: root
@@ -43,5 +43,5 @@
   notify:
   - enable gpdfand
   tags:
-  - common
   - fan
+  - power

@@ -7,8 +7,8 @@
     group: root
     mode: 0644
   with_items:
-  - files/wifi/brcmfmac4356-pcie.bin
-  - files/wifi/brcmfmac4356-pcie.txt
+  - files/brcmfmac4356-pcie.bin
+  - files/brcmfmac4356-pcie.txt
   tags:
   - common
   - wifi
