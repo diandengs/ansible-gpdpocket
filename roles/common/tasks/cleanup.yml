@@ -10,6 +10,15 @@
   - cleanup
   - common
 
+- name: remove broken pulse config
+  lineinfile:
+    path: /etc/pulse/daemon.conf
+    regexp: "{{ item }}"
+    state: absent
+  with_items:
+  - 'set-default-sink 1'
+  - 'set-default-source 1'
+  
 - name: remove old xorg configs
   file:
     path: "{{ item }}"
