@@ -1,6 +1,0 @@
----
-- name: set default audio
-  shell: |
-    pacmd set-default-sink 1 || true
-    pacmd set-default-source 1 || true
-  listen: set default audio

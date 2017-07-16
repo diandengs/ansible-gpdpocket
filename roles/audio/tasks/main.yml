@@ -14,11 +14,21 @@
     owner: root
     group: root
     mode: 0644
-  notify:
-  - set default audio
   with_items:
   - files/chtrt5645.conf
   - files/HiFi.conf
+  tags:
+  - audio
+  - common
+
+- name: set default sink and source in pulseaudio
+  lineinfile:
+    path: /etc/pulse/default.pa
+    regexp: "^{{ item.key }} "
+    line: "{{ item.key }} {{ item.value}}"
+  with_items:
+  - { key: 'set-default-sink', value: '1' }
+  - { key: 'set-default-source', value: '2' }
   tags:
   - audio
   - common
