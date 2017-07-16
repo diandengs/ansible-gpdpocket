@@ -1,7 +1,7 @@
 ---
 - name: set tlp disk devices
   lineinfile:
-    path: /etc/default/grub
+    path: /etc/default/tlp
     regexp: '^DISK_DEVICES='
     line: 'DISK_DEVICES="mmcblk0"'
   notify:
