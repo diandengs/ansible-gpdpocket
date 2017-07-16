@@ -26,12 +26,12 @@ done
 echo "downloading latest ansible code..."
 if [ -d /usr/src/ansible-gpdpocket ]; then
   cd /usr/src/ansible-gpdpocket
-  git pull -f
-  git checkout ${BRANCH}
+  git fetch --all
+  git reset --hard origin/${BRANCH}
 else
   git clone https://github.com/cawilliamson/ansible-gpdpocket.git /usr/src/ansible-gpdpocket
   cd /usr/src/ansible-gpdpocket
-  git checkout ${BRANCH}
+  git reset --hard origin/${BRANCH}
 fi
 
 # ensure /boot is mounted

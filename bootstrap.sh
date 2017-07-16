@@ -52,7 +52,8 @@ fi
 echo "downloading latest ansible code..."
 git clone https://github.com/cawilliamson/ansible-gpdpocket.git /usr/src/ansible-gpdpocket
 cd /usr/src/ansible-gpdpocket
-git checkout ${BRANCH}
+git fetch --all
+git reset --hard origin/${BRANCH}
 
 # ensure /boot is mounted
 echo "ensuring /boot is mounted..."
