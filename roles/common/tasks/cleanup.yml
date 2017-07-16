@@ -103,3 +103,12 @@
   tags:
   - cleanup
   - common
+  
+- name: remove disk line from grub (accidentically placed there)
+  lineinfile:
+    path: /etc/default/grub
+    line: 'DISK_DEVICES="mmcblk0"'
+    state: absent
+  tags:
+  - cleanup
+  - common
