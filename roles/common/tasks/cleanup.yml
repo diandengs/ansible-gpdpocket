@@ -18,6 +18,8 @@
   with_items:
   - 'set-default-sink 1'
   - 'set-default-source 1'
+  - 'set-default-sink = 1'
+  - 'set-default-source = 1'
   
 - name: remove old xorg configs
   file:

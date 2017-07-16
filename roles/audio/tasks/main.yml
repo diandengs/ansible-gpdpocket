@@ -23,23 +23,11 @@
   - audio
   - common
 
-- name: add additional pulseaudio config
-  lineinfile:
-    path: /etc/pulse/daemon.conf
-    line: "{{ item }}"
-  with_items:
-  - 'realtime-scheduling = no'
-  - 'set-default-sink = 1'
-  - 'set-default-source = 1'
-  tags:
-  - audio
-  - common
-
-- name: disable realtime scheduling
+- name: disable pulse realtime scheduling
   lineinfile:
     path: /etc/pulse/daemon.conf
     regexp: '^realtime-scheduling = yes'
-    state: absent
+    line: 'realtime-scheduling = no'
   tags:
   - audio
   - common
