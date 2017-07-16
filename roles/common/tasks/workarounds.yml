@@ -1,0 +1,5 @@
+---
+- name: disable tlp
+  systemd:
+    name: tlp
+    enabled: no

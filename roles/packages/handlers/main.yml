@@ -6,5 +6,5 @@
     state: started
   with_items:
   - thermald
-  - tlp
+  #- tlp
   listen: enable thermal services
