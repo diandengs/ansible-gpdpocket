@@ -3,6 +3,13 @@
 # set exit on error
 set -e
 
+# Set branch
+if [ "$1" == '--dev' ]; then
+  BRANCH=dev
+else
+  BRANCH=master
+fi
+
 # copy wifi config
 echo "copying wifi config..."
 mkdir -p /lib/firmware/brcm
@@ -44,10 +51,12 @@ fi
 # update ansible code
 echo "downloading latest ansible code..."
 git clone https://github.com/cawilliamson/ansible-gpdpocket.git /usr/src/ansible-gpdpocket
-cd /usr/src/ansible-gpdpocket 
+cd /usr/src/ansible-gpdpocket
+git checkout ${BRANCH}
 
 # ensure /boot is mounted
-mount /boot || true
+echo "ensuring /boot is mounted..."
+mount /boot >/dev/null 2>&1 || true
 
 # run ansible scripts
 echo "starting ansible playbook..."
