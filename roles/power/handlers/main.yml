@@ -10,6 +10,5 @@
 - name: restart tlp
   systemd:
     name: tlp
-    enabled: yes
     state: restarted
   listen: restart tlp
