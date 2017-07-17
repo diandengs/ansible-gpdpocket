@@ -58,13 +58,10 @@
 - name: set gnome interface scaling
   copy:
     src: files/03scaling
-    dest: "{{ item }}"
+    dest: /etc/dconf/db/local.d/
     owner: root
     group: root
     mode: 0644
-  with_items:
-  - /etc/dconf/db/gdm.d/
-  - /etc/dconf/db/local.d/
   notify:
   - update dconf
   ignore_errors: yes
