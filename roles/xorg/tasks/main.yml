@@ -79,6 +79,7 @@
     path: /etc/gdm3/custom.conf
     regexp: '^#WaylandEnable=false'
     line: 'WaylandEnable=false'
+    backrefs: yes
   ignore_errors: yes
   tags:
   - xorg
