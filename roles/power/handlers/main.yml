@@ -4,11 +4,5 @@
     name: gpdfand
     daemon_reload: yes
     enabled: yes
-    state: started
-  listen: enable gpdfand
-  
-- name: restart tlp
-  systemd:
-    name: tlp
     state: restarted
-  listen: restart tlp
+  listen: enable gpdfand

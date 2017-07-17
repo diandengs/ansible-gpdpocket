@@ -5,7 +5,7 @@
     regexp: '^DISK_DEVICES='
     line: 'DISK_DEVICES="mmcblk0"'
   notify:
-  - restart tlp
+  - enable thermal services
   tags:
   - power
   - tlp

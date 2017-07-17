@@ -1,5 +1,5 @@
 ---
-- name: fetch latest prebuilt kernel (this will take a while)
+- name: fetch latest prebuilt kernel (this may take a while)
   git:
     repo: https://github.com/cawilliamson/linux-gpdpocket.git
     dest: /usr/src/linux-gpdpocket
@@ -9,7 +9,7 @@
   tags:
   - boot
 
-- name: install kernel modules
+- name: install kernel modules (this may take a while)
   make:
     chdir: /usr/src/linux-gpdpocket
     target: modules_install

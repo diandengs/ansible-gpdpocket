@@ -21,10 +21,9 @@ modprobe -r brcmfmac
 modprobe brcmfmac
 
 # prompt for wifi connection
-echo "Please connect to a WiFi network or wired network (via USB adapter), then press return to continue:"
-echo
 echo "If you do not see the WiFi option in your desktop environment - you may need to use a USB ethernet adapter. This is due to an incompatibility on the Linux kernel your distribution is using. This will be resolved once the bootstrap script has run successfully for the first time but that will require an Internet connection to be present."
 echo
+echo "Please connect to a WiFi network or wired network (via USB adapter), then press return to continue:"
 read
 
 # wait for internet connection

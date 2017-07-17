@@ -1,5 +1,5 @@
 ---
-- name: install essential packages
+- name: install essential packages (this may take a while)
   pacman: name="{{ item }}"
   with_items:
   - base-devel

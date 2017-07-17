@@ -25,7 +25,7 @@
   tags:
   - packages
 
-- name: install essential packages
+- name: install essential packages (this may take a while)
   portage: package="{{ item }}"
   with_items:
   - app-portage/layman
