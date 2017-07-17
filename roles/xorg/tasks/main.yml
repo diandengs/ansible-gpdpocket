@@ -53,6 +53,7 @@
     path: "{{ item }}"
     state: directory
   with_items:
+  /etc/dconf/db/gdm.d
   - /etc/dconf/db/local.d
   - /etc/dconf/profile
   tags:
@@ -66,6 +67,7 @@
     group: root
     mode: 0644
   with_items:
+  - { src: 'files/03scaling', dest: '/etc/dconf/db/gdm.d/' }
   - { src: 'files/03scaling', dest: '/etc/dconf/db/local.d/' }
   - { src: 'files/dconf-profile-user', dest: '/etc/dconf/profile/user' }
   notify:
