@@ -1,69 +1,15 @@
 ---
-- name: fix hook loading order
+- name: fix mkinitcpio config
   lineinfile:
     path: /etc/mkinitcpio.conf
-    regexp: '^HOOKS='
-    line: HOOKS="base udev block autodetect modconf filesystems fsck"
-    create: yes
-  notify:
-  - update boot
-  tags:
-  - boot
-
-- name: fetch latest prebuilt kernel (this will take a while)
-  git:
-    repo: https://github.com/cawilliamson/linux-gpdpocket.git
-    dest: /usr/src/linux-gpdpocket
-    version: "{{ BRANCH | default('master') }}"
-    force: yes
-  register: kernel_sources
-  tags:
-  - boot
-
-- name: install kernel modules
-  make:
-    chdir: /usr/src/linux-gpdpocket
-    target: modules_install
-  notify:
-  - update boot
-  when: kernel_sources.changed
-  tags:
-  - boot
-
-- name: install new kernel
-  copy:
-    src: /usr/src/linux-gpdpocket/arch/x86/boot/bzImage
-    dest: /boot/vmlinuz-4.12.0-gpdpocket
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-  - update boot
-  when: kernel_sources.changed
-  tags:
-  - boot
-
-- name: add modules to initramfs
-  lineinfile:
-    path: /etc/mkinitcpio.conf
-    regexp: '^MODULES='
-    line: MODULES="btusb pwm-lpss pwm-lpss-platform"
-    create: yes
-  notify:
-  - update boot
-  tags:
-  - boot
-
-- name: set grub boot options
-  lineinfile:
-    path: /etc/default/grub
     regexp: "^{{ item.key }}="
-    line: "{{ item.key }}={{ item.value }}"
+    line: "{{ item.key }}=\"{{ item.value }}\""
+    create: yes
   with_items:
-  - { key: 'GRUB_CMDLINE_LINUX_DEFAULT', value: '"i915.fastboot=1 i915.semaphores=1"' }
-  - { key: 'GRUB_DEFAULT', value: 'saved' }
-  - { key: 'GRUB_TIMEOUT', value: '3' }
+  - { key: 'HOOKS', value: 'base udev block autodetect modconf filesystems fsck' }
+  - { key: 'MODULES', value: 'btusb pwm-lpss pwm-lpss-platform' }
   notify:
   - update boot
   tags:
   - boot
+
