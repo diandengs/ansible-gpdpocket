@@ -54,21 +54,15 @@
   tags:
   - boot
 
-- name: add boot options to grub
+- name: set grub boot options
   lineinfile:
     path: /etc/default/grub
-    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
-    line: 'GRUB_CMDLINE_LINUX_DEFAULT="i915.fastboot=1 i915.semaphores=1"'
-  notify:
-  - update boot
-  tags:
-  - boot
-
-- name: reduce grub timeout
-  lineinfile:
-    path: /etc/default/grub
-    regexp: '^GRUB_TIMEOUT='
-    line: 'GRUB_TIMEOUT=3'
+    regexp: "^{{ item.key }}="
+    line: "{{ item.key }}={{ item.value }}"
+  with_items:
+  - { key: 'GRUB_CMDLINE_LINUX_DEFAULT', value: '"i915.fastboot=1 i915.semaphores=1"' }
+  - { key: 'GRUB_DEFAULT', value: 'saved' }
+  - { key: 'GRUB_TIMEOUT', value: '3' }
   notify:
   - update boot
   tags:
