@@ -26,6 +26,8 @@
     path: "{{ item }}"
     state: absent
   with_items:
+  - /etc/X11/Xsession.d/01touchscreen
+  - /etc/X11/Xsession.d/02gpdrotate
   - /etc/X11/Xsession.d/02scale
   - /etc/X11/Xsession.d/03scaling
   - /etc/X11/Xsession.d/03scrolling
@@ -37,7 +39,19 @@
   tags:
   - cleanup
   - common
-  
+
+- name: remove old dconf config files
+  file:
+    path: 
+    state: absent
+  with_items:
+  - /etc/dconf/db/gdm.d
+  - /etc/dconf/db/local.d/03scaling
+  - /etc/dconf/db/local.d/03-scaling
+  tags:
+  - cleanup
+  - common
+
 - name: remove old rc.local hacks
   lineinfile:
     path: /etc/rc.local
