@@ -20,8 +20,7 @@
   register: xorg_configs
   with_items:
   - { src: 'files/01touchscreen', dest: '/etc/X11/Xsession.d/' }
-  - { src: 'files/03scrolling', dest: '/etc/X11/Xsession.d/' }
-  - { src: 'files/04gpdrotate', dest: '/etc/X11/Xsession.d/' }
+  - { src: 'files/02gpdrotate', dest: '/etc/X11/Xsession.d/' }
   - { src: 'files/20-intel.conf', dest: '/etc/X11/xorg.conf.d/' }
   - { src: 'files/89-screen.conf', dest: '/etc/X11/xorg.conf.d/' }
   - { src: 'files/90-monitor.conf', dest: '/etc/X11/xorg.conf.d/' }

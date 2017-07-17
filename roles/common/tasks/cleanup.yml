@@ -26,6 +26,9 @@
     path: "{{ item }}"
     state: absent
   with_items:
+  - /etc/X11/Xsession.d/02scale
+  - /etc/X11/Xsession.d/03scrolling
+  - /etc/X11/Xsession.d/04gpdrotate
   - /etc/X11/Xsession.d/98gpdrotate
   - /etc/X11/Xsession.d/98touchscreen
   - /etc/X11/Xsession.d/99touchscreen
