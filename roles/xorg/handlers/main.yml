@@ -8,11 +8,6 @@
   listen: enable gpdrotate
 
 - name: update dconf
-  shell: |
-    su - gdm -c "dconf update"
-    cd /home
-    for USER in *; do
-      su - ${USER} -c "dconf update"
-    done
+  shell: dconf update
   ignore_errors: yes
   listen: update dconf
