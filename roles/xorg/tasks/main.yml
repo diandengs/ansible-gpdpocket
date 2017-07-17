@@ -20,7 +20,6 @@
   with_items:
   - { src: 'files/01touchscreen', dest: '/etc/X11/Xsession.d/' }
   - { src: 'files/02gpdrotate', dest: '/etc/X11/Xsession.d/' }
-  - { src: 'files/03scaling', dest: '/etc/X11/Xsession.d/' }
   - { src: 'files/20-intel.conf', dest: '/etc/X11/xorg.conf.d/' }
   - { src: 'files/80-screen.conf', dest: '/etc/X11/xorg.conf.d/' }
   - { src: 'files/90-monitor.conf', dest: '/etc/X11/xorg.conf.d/' }
@@ -49,11 +48,25 @@
   tags:
   - xorg
 
-- name: set gdm scaling
-    su - gdm -c "DISPLAY=:0 XAUTHORITY=$(ps aux |grep -e Xorg | head -n1 | awk '{ split($0, a, "-auth "); split(a[2], b, " "); print b[1] }') gsettings reset org.gnome.settings-daemon.plugins.xsettings overrides"
-    su - gdm -c "DISPLAY=:0 XAUTHORITY=$(ps aux |grep -e Xorg | head -n1 | awk '{ split($0, a, "-auth "); split(a[2], b, " "); print b[1] }') gsettings set org.gnome.desktop.interface scaling-factor 1"
-    su - gdm -c "DISPLAY=:0 XAUTHORITY=$(ps aux |grep -e Xorg | head -n1 | awk '{ split($0, a, "-auth "); split(a[2], b, " "); print b[1] }') gsettings set org.gnome.desktop.interface text-scaling-factor 1"
-  changed_when: false
+- name: ensure gdm directory exists
+  file:
+    path: /etc/dconf/db/gdm.d
+    state: directory
+  tags:
+  - xorg
+
+- name: set gnome interface scaling
+  copy:
+    src: files/03scaling
+    dest: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+  - /etc/dconf/db/gdm.d/
+  - /etc/dconf/db/local.d/
+  notify:
+  - update dconf
   ignore_errors: yes
   tags:
   - xorg
