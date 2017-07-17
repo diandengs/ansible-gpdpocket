@@ -49,6 +49,16 @@
   tags:
   - xorg
 
+- name: set gdm scaling
+  shell: |
+    su - gdm -c gsettings reset org.gnome.settings-daemon.plugins.xsettings overrides
+    su - gdm -c gsettings set org.gnome.desktop.interface scaling-factor 1
+    su - gdm -c gsettings set org.gnome.desktop.interface text-scaling-factor 1
+  changed_when: false
+  ignore_errors: yes
+  tags:
+  - xorg
+
 - name: disable wayland on gdm
   lineinfile:
     path: /etc/gdm3/custom.conf
