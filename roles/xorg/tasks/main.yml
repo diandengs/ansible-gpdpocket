@@ -72,7 +72,6 @@
   - { src: 'files/dconf-profile-user', dest: '/etc/dconf/profile/user' }
   notify:
   - update dconf
-  ignore_errors: yes
   tags:
   - xorg
 
