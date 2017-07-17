@@ -53,7 +53,7 @@
     path: "{{ item }}"
     state: directory
   with_items:
-  /etc/dconf/db/gdm.d
+  - /etc/dconf/db/gdm.d
   - /etc/dconf/db/local.d
   - /etc/dconf/profile
   tags:
