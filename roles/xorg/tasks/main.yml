@@ -47,3 +47,12 @@
   - enable gpdrotate
   tags:
   - xorg
+
+- name: disable wayland on gdm
+  lineinfile:
+    path: /etc/gdm3/custom.conf
+    regexp: '^#WaylandEnable=false'
+    line: 'WaylandEnable=false'
+  ignore_errors: yes
+  tags:
+  - xorg
