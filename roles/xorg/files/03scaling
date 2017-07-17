@@ -6,5 +6,5 @@
 if [ -f /usr/bin/gsettings ]; then
   gsettings reset org.gnome.settings-daemon.plugins.xsettings overrides
   gsettings set org.gnome.desktop.interface scaling-factor 1
-  gsettings set org.gnome.desktop.interface text-scaling-factor 0
+  gsettings set org.gnome.desktop.interface text-scaling-factor 1
 fi
