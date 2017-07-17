@@ -48,20 +48,26 @@
   tags:
   - xorg
 
-- name: ensure gdm directory exists
+- name: create dconf directories
   file:
-    path: /etc/dconf/db/gdm.d
+    path: "{{ item }}"
     state: directory
+  with_items:
+  - /etc/dconf/db/local.d
+  - /etc/dconf/profile
   tags:
   - xorg
 
 - name: set gnome interface scaling
   copy:
-    src: files/03scaling
-    dest: /etc/dconf/db/local.d/
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     owner: root
     group: root
     mode: 0644
+  with_items:
+  - { src: 'files/03scaling', dest: '/etc/dconf/db/local.d/' }
+  - { src: 'files/dconf-profile-user', dest: '/etc/dconf/profile/user' }
   notify:
   - update dconf
   ignore_errors: yes
