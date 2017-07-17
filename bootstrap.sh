@@ -22,6 +22,9 @@ modprobe brcmfmac
 
 # prompt for wifi connection
 echo "Please connect to a WiFi network, then press return to continue:"
+echo
+echo "If you do not see the WiFi option in your desktop environment - you may need to use a USB ethernet adapter. This is due to an incompatibility on the Linux kernel your distribution is using. This will be resolved once the Ansible script has run successfully but it will require an Internet connection to do this."
+echo
 read
 
 # wait for internet connection
