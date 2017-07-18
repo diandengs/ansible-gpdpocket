@@ -77,10 +77,8 @@
 - name: disable wayland on gdm
   lineinfile:
     path: /etc/gdm3/custom.conf
-    regexp: '^#WaylandEnable=false'
     line: 'WaylandEnable=false'
     create: yes
-    backrefs: yes
   ignore_errors: yes
   tags:
   - xorg
