@@ -54,7 +54,6 @@
   with_items:
   - /etc/dconf/db/local.d
   - /etc/dconf/profile
-  - /etc/gdm3/
   tags:
   - xorg
 
@@ -74,11 +73,21 @@
   tags:
   - xorg
 
+- name: check if gdm is installed
+  stat: path=/etc/gdm3/custom.conf
+  register: gdm
+  tags:
+  - xorg
+
+- name: ensure gdm3/custom.conf exists
+  file
+
 - name: disable wayland on gdm
   lineinfile:
     path: /etc/gdm3/custom.conf
+    regexp: '^#WaylandEnable=false'
     line: 'WaylandEnable=false'
-    create: yes
-  ignore_errors: yes
+    backrefs: yes
+  when: gdm.stat.islnk is defined
   tags:
   - xorg
