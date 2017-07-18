@@ -12,7 +12,7 @@ export DISPLAY XAUTHORITY
 xrandr --output DSI1 --rotate right
 
 # wait for rotation to complete
-sleep 2
+sleep 5
 
 # rotate touchscreen
 xinput set-prop 11 "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
