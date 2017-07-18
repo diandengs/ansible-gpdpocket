@@ -28,7 +28,6 @@
     owner: root
     group: root
     mode: 0644
-    force: no
   tags:
   - fan
   - power
