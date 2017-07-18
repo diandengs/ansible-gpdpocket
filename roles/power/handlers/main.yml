@@ -5,3 +5,13 @@
     daemon_reload: yes
     enabled: yes
   listen: enable gpdfand
+
+- name: enable thermal services
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: restarted
+  with_items:
+  - thermald
+  - tlp
+  listen: enable thermal services
