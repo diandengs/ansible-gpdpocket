@@ -22,6 +22,7 @@
   - { src: 'files/20-intel.conf', dest: '/etc/X11/xorg.conf.d/' }
   - { src: 'files/80-screen.conf', dest: '/etc/X11/xorg.conf.d/' }
   - { src: 'files/90-monitor.conf', dest: '/etc/X11/xorg.conf.d/' }
+  - { src: 'files/99-touchscreen.conf', dest: '/etc/X11/xorg.conf.d/' }
   tags:
   - xorg
 
