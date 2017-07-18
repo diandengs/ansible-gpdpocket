@@ -79,9 +79,6 @@
   tags:
   - xorg
 
-- name: ensure gdm3/custom.conf exists
-  file
-
 - name: disable wayland on gdm
   lineinfile:
     path: /etc/gdm3/custom.conf
