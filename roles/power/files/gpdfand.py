@@ -78,8 +78,8 @@ while True:
 
     # Set turbo boost state
     if temp >= args.turbo:
-        no_turbo(1)
+        set_no_turbo(1)
     else:
-        no_turbo(0)
+        set_no_turbo(0)
 
     sleep(args.time)
