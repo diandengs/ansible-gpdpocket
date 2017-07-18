@@ -4,7 +4,6 @@
     name: gpdrotate
     daemon_reload: yes
     enabled: yes
-    state: restarted
   listen: enable gpdrotate
 
 - name: update dconf
