@@ -49,7 +49,7 @@
   with_items:
   - { key: 'GRUB_CMDLINE_LINUX_DEFAULT', value: '"i915.fastboot=1 i915.semaphores=1"' }
   - { key: 'GRUB_DEFAULT', value: 'saved' }
-  - { key: 'GRUB_TIMEOUT', value: '3' }
+  - { key: 'GRUB_TIMEOUT', value: '2' }
   notify:
   - update boot
   tags:
