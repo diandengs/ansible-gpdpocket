@@ -1,8 +1,0 @@
----
-- name: disable tlp
-  systemd:
-    name: tlp
-    enabled: no
-  tags:
-  - common
-  - workarounds
