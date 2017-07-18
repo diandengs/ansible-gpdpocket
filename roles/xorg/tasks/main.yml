@@ -47,13 +47,14 @@
   tags:
   - xorg
 
-- name: create dconf directories
+- name: create dconf and gdm3 directories
   file:
     path: "{{ item }}"
     state: directory
   with_items:
   - /etc/dconf/db/local.d
   - /etc/dconf/profile
+  - /etc/gdm3/
   tags:
   - xorg
 
@@ -78,6 +79,7 @@
     path: /etc/gdm3/custom.conf
     regexp: '^#WaylandEnable=false'
     line: 'WaylandEnable=false'
+    create: yes
     backrefs: yes
   ignore_errors: yes
   tags:
