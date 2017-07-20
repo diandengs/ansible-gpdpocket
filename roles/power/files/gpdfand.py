@@ -35,7 +35,10 @@ def get_temp():
             with io.open(temp_input_dev, 'r') as core_temp:
                 temp = int(core_temp.read()) / 1000
                 temps.append(temp)
-    return sum(temps) / float(len(temps))
+    if(len(temps) > 0): 	
+        return sum(temps) / float(len(temps))
+    else:
+        return 0
 
 # Set fans function
 def set_fans(a,b):
@@ -67,7 +70,7 @@ while True:
     temp = get_temp()
 
     # Set fan speed
-    if temp >= args.max:
+    if temp >= args.max or temp == 0:
         set_fans(1,1)
     elif temp >= args.med:
         set_fans(0,1)
