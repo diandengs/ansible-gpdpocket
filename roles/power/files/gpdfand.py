@@ -80,7 +80,7 @@ while True:
         set_fans(0,0)
 
     # Set turbo boost state
-    if temp >= args.turbo:
+    if temp >= args.turbo or temp == 0:
         set_no_turbo(1)
     else:
         set_no_turbo(0)
