@@ -19,24 +19,24 @@ local_env = os.environ.copy()
 sleep(5)
 
 # determine DISPLAY environment variable
-if int(subprocess.check_output(['pgrep', 'Xorg', '-c'])) == 1:
+if int(subprocess.check_output('pgrep Xorg -c', shell=True)) == 1:
     local_env['DISPLAY'] = ':0'
 else:
     local_env['DISPLAY'] = ':1'
 
 # determine XAUTHORITY environment variable
-xorg_proc = subprocess.check_output(['pgrep','Xorg', '-a', '-n'])
+xorg_proc = subprocess.check_output('pgrep Xorg -a -n', shell=True)
 local_env['XAUTHORITY'] = xorg_proc.split('-auth ')[1].split(' ')[0]
 
 # check if screen rotation is enabled
 if args.screen == 1:
     # rotate display
-    subprocess.call(['xrandr', '--output', 'DSI1', '--rotate', 'right'], env=local_env)
+    subprocess.call('xrandr --output DSI1 --rotate right', shell=True, env=local_env)
 
 # check if touchscreen rotation is enabled
 if args.touchscreen == 1:
     # determine touchscreen ID
-    touchscreen_id = subprocess.check_output(['xinput', 'list', '--id-only', 'pointer:"Goodix', 'Capacitive', 'TouchScreen"'], env=local_env).rstrip()
+    touchscreen_id = subprocess.check_output('xinput list --id-only pointer:"Goodix Capacitive TouchScreen"', shell=True, env=local_env).rstrip()
 
     # rotate touchscreen
-    subprocess.call(['xinput', 'set-prop', touchscreen_id, '"Coordinate', 'Transformation', 'Matrix"', '0', '1', '0', '-1', '0', '1', '0', '0', '1'], env=local_env)
+    subprocess.call('xinput set-prop %s "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1' % touchscreen_id, shell=True, env=local_env)
