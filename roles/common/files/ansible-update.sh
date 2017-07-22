@@ -40,4 +40,4 @@ mount /boot >/dev/null 2>&1 || true
 
 # run ansible scripts
 echo "starting ansible playbook..."
-ANSIBLE_NOCOWS=1 ansible-playbook site.yml -e "BRANCH=${BRANCH}"
+ANSIBLE_NOCOWS=1 ansible-playbook site.yml # -e "BRANCH=${BRANCH}" -- disable kernel fetch to test a theory
