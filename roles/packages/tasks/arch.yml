@@ -11,6 +11,7 @@
   - gstreamer-vaapi
   - gst-libav
   - i2c-tools
+  - ibus
   - inetutils
   - intel-ucode
   - kmod
