@@ -5,7 +5,9 @@
   - base-devel
   - btrfs-progs
   - bc
+  - efibootmgr
   - git
+  - grub
   - gstreamer-vaapi
   - gst-libav
   - i2c-tools
@@ -15,6 +17,7 @@
   - libelf
   - mesa
   - openssl-1.0
+  - os-prober
   - pulseaudio
   - thermald
   - tlp
