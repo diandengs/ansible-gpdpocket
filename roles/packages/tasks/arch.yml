@@ -19,6 +19,7 @@
   - thermald
   - tlp
   - xf86-video-intel
+  - xorg-xinput
   - xorg-xrandr
   notify:
   - enable thermal services
