@@ -41,7 +41,7 @@ if args.touchscreen == 1:
     sleep(args.wait)
 
     # determine touchscreen ID
-    touchscreen_id = subprocess.check_output(['xinput', '--id-only', 'pointer:"Goodix Capacitive TouchScreen"'])
+    touchscreen_id = subprocess.check_output(['xinput', 'list', '--id-only', 'pointer:"Goodix Capacitive TouchScreen"'])
 
     # rotate touchscreen
     subprocess.call(['xinput', 'set-prop', touchscreen_id, '"Coordinate Transformation Matrix"', '0', '1', '0', '-1', '0', '1', '0', '0', '1'], env=local_env)
