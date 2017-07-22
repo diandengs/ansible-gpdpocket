@@ -14,6 +14,7 @@
   - kmod
   - libelf
   - mesa
+  - openssl-1.0
   - pulseaudio
   - thermald
   - tlp
