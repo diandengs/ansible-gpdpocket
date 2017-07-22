@@ -3,4 +3,5 @@
 #
 # This file is sourced by Xsession(5), not executed.
 
-exec systemctl start gpd-rotate &
+source /etc/gpd/rotate.conf
+exec /usr/local/sbin/gpd-rotate --display=${DISPLAY} --touchscreen=${TOUCHSCREEN} &
