@@ -1,7 +1,7 @@
 # -*- sh -*-
-# Xsession.d script to start gpdrotate
+# Xsession.d script to start gpd-rotate
 #
 # This file is sourced by Xsession(5), not executed.
 
 . /etc/gpd/rotate.conf
-exec /usr/local/sbin/gpd-rotate --display=${DISPLAY} --touchscreen=${TOUCHSCREEN} &
+/usr/local/sbin/gpd-rotate --screen=${SCREEN} --touchscreen=${TOUCHSCREEN} &

@@ -8,7 +8,7 @@ import subprocess
 
 # parse command line arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('--display', type=int, help='Should we rotate display?', default=1)
+parser.add_argument('--screen', type=int, help='Should we rotate screen?', default=1)
 parser.add_argument('--touchscreen', type=int, help='Should we rotate touchscreen?', default=1)
 args = parser.parse_args()
 
@@ -28,8 +28,8 @@ else:
 xorg_proc = subprocess.check_output('pgrep Xorg -a -n', shell=True)
 local_env['XAUTHORITY'] = xorg_proc.split('-auth ')[1].split(' ')[0]
 
-# check if display rotation is enabled
-if args.display == 1:
+# check if screen rotation is enabled
+if args.screen == 1:
     # rotate display
     subprocess.call('xrandr --output DSI1 --rotate right', shell=True, env=local_env)
 
