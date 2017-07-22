@@ -35,6 +35,9 @@ if args.screen == 1:
 
 # check if touchscreen rotation is enabled
 if args.touchscreen == 1:
+    # Wait for display to rotate
+    sleep(5)
+    
     # determine touchscreen ID
     touchscreen_id = subprocess.check_output('xinput list --id-only pointer:"Goodix Capacitive TouchScreen"', shell=True, env=local_env).rstrip()
 
