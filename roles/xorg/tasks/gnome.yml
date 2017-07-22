@@ -1,5 +1,5 @@
 ---
-- name: create dconf and gdm3 directories
+- name: create dconf directories
   file:
     path: "{{ item }}"
     state: directory
@@ -27,20 +27,38 @@
   - gnome
   - xorg
 
-- name: check if gdm is installed
-  stat: path=/etc/gdm3/custom.conf
+- name: check for gdm directory
+  stat: path=/etc/gdm/custom.conf
   register: gdm
+  tags:
+  - gnome
+  - xorg
+
+- name: check for gdm3 directory
+  stat: path=/etc/gdm3/custom.conf
+  register: gdm3
   tags:
   - gnome
   - xorg
 
 - name: disable wayland on gdm
   lineinfile:
-    path: /etc/gdm3/custom.conf
+    path: /etc/gdm/custom.conf
     regexp: '^#WaylandEnable=false'
     line: 'WaylandEnable=false'
     backrefs: yes
   when: gdm.stat.islnk is defined
+  tags:
+  - gnome
+  - xorg
+
+- name: disable wayland on gdm3
+  lineinfile:
+    path: /etc/gdm3/custom.conf
+    regexp: '^#WaylandEnable=false'
+    line: 'WaylandEnable=false'
+    backrefs: yes
+  when: gdm3.stat.islnk is defined
   tags:
   - gnome
   - xorg
