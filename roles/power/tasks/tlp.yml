@@ -5,8 +5,8 @@
     regexp: "^{{ item.key }}="
     line: "{{ item.key }}=\"{{ item.value }}\""
   with_items:
-  - { key: 'DISK_DEVICES', value: 'mmcblk0 sda' }
-  - { key: 'DISK_IOSCHED', value: 'deadline deadline' }
+  - { key: 'DISK_DEVICES', value: 'mmcblk0' }
+  - { key: 'DISK_IOSCHED', value: 'sfq' }
   notify:
   - enable thermal services
   tags:
