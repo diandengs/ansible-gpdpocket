@@ -12,7 +12,7 @@ fi
 
 # wait for internet connection
 echo "waiting for internet connection..."
-while ! ping -c1 google.com &>/dev/null; do
+while ! ping -c1 pool.ntp.org &>/dev/null; do
   sleep 1
 done
 
