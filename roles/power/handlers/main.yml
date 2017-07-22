@@ -1,10 +1,10 @@
 ---
-- name: enable gpdfand
+- name: enable gpd-fan
   systemd:
-    name: gpdfand
+    name: gpd-fan
     daemon_reload: yes
     enabled: yes
-  listen: enable gpdfand
+  listen: enable gpd-fan
 
 - name: enable thermal services
   service:

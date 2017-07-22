@@ -1,8 +1,8 @@
 ---
-- name: copy gpdfand daemon
+- name: copy gpd-fan script
   copy:
-    src: files/gpdfand.py
-    dest: /usr/local/sbin/gpdfand
+    src: files/gpd-fan.py
+    dest: /usr/local/sbin/gpd-fan
     owner: root
     group: root
     mode: 0777
@@ -10,10 +10,10 @@
   - fan
   - power
 
-- name: add suspend script for gpdfand
+- name: add suspend script for gpd-fan
   copy:
-    src: files/gpdfand
-    dest: /lib/systemd/system-sleep/gpdfand
+    src: files/gpd-fan.sh
+    dest: /lib/systemd/system-sleep/gpd-fan
     owner: root
     group: root
     mode: 0777
@@ -21,10 +21,10 @@
   - fan
   - power
 
-- name: copy config file for gpdfand
+- name: copy config file for gpd-fan
   copy:
-    src: files/gpdfand.conf
-    dest: /etc/gpdfand.conf
+    src: files/gpd-fan.conf
+    dest: /etc/gpd/fan.conf
     owner: root
     group: root
     mode: 0644
@@ -34,13 +34,13 @@
 
 - name: copy systemd service for gpdfand
   copy:
-    src: files/gpdfand.service
-    dest: /etc/systemd/system/gpdfand.service
+    src: files/gpd-fan.service
+    dest: /etc/systemd/system/gpd-fan.service
     owner: root
     group: root
     mode: 0644
   notify:
-  - enable gpdfand
+  - enable gpd-fan
   tags:
   - fan
   - power

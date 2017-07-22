@@ -10,6 +10,28 @@
   - cleanup
   - common
 
+- name: remove gpdfand files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - /usr/local/sbin/gpdfand
+  - /lib/systemd/system-sleep/gpdfand
+  - /etc/gpdfand.conf
+  - /etc/systemd/system/gpdfand.service
+  
+- name: remove gpdrotate files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - /usr/local/sbin/gpdrotate
+  - /etc/X11/Xsession.d/01gpdrotate
+  - /etc/systemd/system/gpdrotate.service
+  tags:
+  - cleanup
+  - common
+
 - name: remove broken pulse config
   lineinfile:
     path: /etc/pulse/daemon.conf

@@ -6,8 +6,8 @@ Before=basic.target
 
 [Service]
 Type=simple
-EnvironmentFile=/etc/gpdfand.conf
-ExecStart=/usr/local/sbin/gpdfand --time=${TIME} --turbo=${TURBO} --min=${MIN} --med=${MED} --max=${MAX}
+EnvironmentFile=/etc/gpd/fan.conf
+ExecStart=/usr/local/sbin/gpd-fan --time=${TIME} --turbo=${TURBO} --min=${MIN} --med=${MED} --max=${MAX}
 
 [Install]
 WantedBy=basic.target
