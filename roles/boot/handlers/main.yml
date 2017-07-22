@@ -3,11 +3,11 @@
   shell: |  
     # recreate initramfs image
     if [ -f /usr/bin/apt-get ]; then
-      update-initramfs -u -k 4.12.0-gpdpocket
+      update-initramfs -u -k 4.13.0-gpdpocket
     elif [ -f /usr/bin/emerge ]; then
-      dracut initrd.img-4.12.0-gpdpocket
+      dracut initrd.img-4.13.0-gpdpocket
     elif [ -f /usr/bin/pacman ]; then
-      mkinitcpio -c /etc/mkinitcpio.conf -g /boot/initrd.img-4.12.0-gpdpocket -k 4.12.0-gpdpocket || true
+      mkinitcpio -c /etc/mkinitcpio.conf -g /boot/initrd.img-4.13.0-gpdpocket -k 4.13.0-gpdpocket || true
     fi
     
     # Update grub config

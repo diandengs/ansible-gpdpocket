@@ -22,7 +22,7 @@
 - name: install new kernel
   copy:
     src: /usr/src/linux-gpdpocket/arch/x86/boot/bzImage
-    dest: /boot/vmlinuz-4.12.0-gpdpocket
+    dest: /boot/vmlinuz-4.13.0-gpdpocket
     owner: root
     group: root
     mode: 0644
