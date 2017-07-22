@@ -5,7 +5,7 @@ After=display-manager.service
 [Service]
 Type=oneshot
 EnvironmentFile=/etc/gpd/rotate.conf
-ExecStart=-/usr/local/sbin/gpd-rotate --display=${DISPLAY} --touchscreen=${TOUCHSCREEN} --wait=${WAIT}
+ExecStart=/usr/local/sbin/gpd-rotate --display=${DISPLAY} --touchscreen=${TOUCHSCREEN} --wait=${WAIT}
 
 [Install]
 WantedBy=multi-user.target
