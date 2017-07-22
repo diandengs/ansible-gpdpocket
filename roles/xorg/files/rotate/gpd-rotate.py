@@ -4,7 +4,6 @@
 from time import sleep
 import argparse
 import os
-import re   
 import subprocess
 
 # Parse command line arguments
@@ -23,14 +22,14 @@ if args.display == 1:
     local_env = os.environ.copy()
 
     # Set DISPLAY environment variable
-    if subprocess.check_output(['pgrep', 'Xorg', '-a', '-c']) == 1:
+    if int(subprocess.check_output(['pgrep', 'Xorg', '-c'])) == 1:
         local_env['DISPLAY'] = ':0'
     else:
         local_env['DISPLAY'] = ':1'
 
     # Set XAUTHORITY environment variable
     xorg_proc = subprocess.check_output(['pgrep', 'Xorg', '-a', '-n'])
-    local_env['XAUTHORITY'] = re.search('%s(.*)%s' % ('-auth ', ' '), xorg_proc).group(1)
+    local_env['XAUTHORITY'] = xorg_proc.split('-auth ')[1].split(' ')[0]
 
     # rotate display
     subprocess.call(['xrandr', '--output', 'DSI1', '--rotate', 'right'], env=local_env)
