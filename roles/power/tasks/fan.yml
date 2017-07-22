@@ -1,44 +1,16 @@
 ---
-- name: copy gpd-fan script
+- name: copy gpd-fan files
   copy:
-    src: files/gpd-fan.py
-    dest: /usr/local/sbin/gpd-fan
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     owner: root
     group: root
-    mode: 0777
-  tags:
-  - fan
-  - power
-
-- name: add suspend script for gpd-fan
-  copy:
-    src: files/gpd-fan.sh
-    dest: /lib/systemd/system-sleep/gpd-fan
-    owner: root
-    group: root
-    mode: 0777
-  tags:
-  - fan
-  - power
-
-- name: copy config file for gpd-fan
-  copy:
-    src: files/gpd-fan.conf
-    dest: /etc/gpd/fan.conf
-    owner: root
-    group: root
-    mode: 0644
-  tags:
-  - fan
-  - power
-
-- name: copy systemd service for gpdfand
-  copy:
-    src: files/gpd-fan.service
-    dest: /etc/systemd/system/gpd-fan.service
-    owner: root
-    group: root
-    mode: 0644
+    mode: "{{ item.mode }}"
+  with_items:
+  - { src: 'files/gpd-fan.py', dest: '/lib/systemd/system-sleep/gpd-fan', mode: 0777 }
+  - { src: 'files/gpd-fan.sh', dest: '/lib/systemd/system-sleep/gpd-fan', mode: 0777 }
+  - { src: 'files/gpd-fan.conf', dest: '/etc/gpd/fan.conf', mode: 0644 }
+  - { src: 'files/gpd-fan.service', dest: '/etc/systemd/system/gpd-fan.service', mode: 0644 }
   notify:
   - enable gpd-fan
   tags:
