@@ -25,3 +25,10 @@
   - enable thermal services
   tags:
   - packages
+
+- name: remove unused kernel
+  pacman:
+    name: linux
+    state: absent
+  tags:
+  - packages
